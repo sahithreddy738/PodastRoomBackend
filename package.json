@@ -9,5 +9,8 @@
   },
   "devDependencies": {
     "serverless-offline": "^14.4.0"
+  },
+  "dependencies": {
+    "mysql2": "^3.14.0"
   }
 }
