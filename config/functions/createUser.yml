@@ -1,0 +1,7 @@
+function:
+  handler: src/user/createUser/index.handler
+  timeout: 30
+  events:
+  - httpApi:
+      path: /user
+      method: post

@@ -1,5 +1,4 @@
 # "org" ensures this Service is used with the correct Serverless Framework Access Key.
-org: bizcloud123143
 # "service" is the name of this project. This will also be added to your AWS resource names.
 service: podcastroombackend
 
@@ -8,11 +7,14 @@ provider:
   runtime: nodejs20.x
 
 functions:
-  hello:
-    handler: src/handler.hello
-    events:
-      - httpApi:
-          path: /hello
-          method: get
+  createUser: ${file(config/functions/createUser.yml):function}
+  createPodcast: ${file(config/functions/createPodcast.yml):function}
+  getAllPodcasts: ${file(config/functions/getAllPodcast.yml):function}
+  createTimeSlot: ${file(config/functions/createTimeSlots.yml):function}
+  getAvailableTimeSlots: ${file(config/functions/getTimeSlots.yml):function}
+  createReservation: ${file(config/functions/createReservation.yml):function}
+  createServices: ${file(config/functions/createServices.yml):function}
+  createRoomServices: ${file(config/functions/createRoomServices.yml):function}
+  getRoomServices: ${file(config/functions/getRoomServices.yml):function}
 plugins:
-  - serverless-offline
+- serverless-offline

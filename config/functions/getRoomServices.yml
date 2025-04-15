@@ -1,0 +1,7 @@
+function:
+  handler: src/services/getRoomServices/index.handler
+  timeout: 30
+  events:
+  - httpApi:
+      path: /roomServices
+      method: get
