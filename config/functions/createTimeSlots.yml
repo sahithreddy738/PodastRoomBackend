@@ -1,0 +1,7 @@
+function:
+  handler: src/timeslots/createTimeSlots/index.handler
+  timeout: 30
+  events:
+  - httpApi:
+      path: /timeslot
+      method: post

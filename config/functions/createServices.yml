@@ -1,0 +1,7 @@
+function:
+  handler: src/services/createServices/index.handler
+  timeout: 30
+  events:
+  - httpApi:
+      path: /services
+      method: post

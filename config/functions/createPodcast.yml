@@ -1,0 +1,7 @@
+function:
+  handler: src/podcast/createPodcast/index.handler
+  timeout: 30
+  events:
+  - httpApi:
+      path: /podcast
+      method: post

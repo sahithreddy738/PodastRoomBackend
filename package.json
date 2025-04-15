@@ -1,8 +1,15 @@
 {
+  "dependencies": {
+    "aws-sdk": "^2.1692.0",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.5.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "moment-timezone": "^0.5.46",
+    "mysql2": "^3.11.3",
+    "uuid": "^11.0.2"
+  },
   "devDependencies": {
     "serverless-offline": "^14.4.0"
-  },
-  "dependencies": {
-    "mysql2": "^3.14.0"
   }
 }

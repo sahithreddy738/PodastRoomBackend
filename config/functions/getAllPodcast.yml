@@ -1,0 +1,7 @@
+function:
+  handler: src/podcast/getAllPodcasts/index.handler
+  timeout: 30
+  events:
+  - httpApi:
+      path: /podcasts
+      method: get

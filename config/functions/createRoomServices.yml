@@ -1,0 +1,7 @@
+function:
+  handler: src/services/createRoomServices/index.handler
+  timeout: 30
+  events:
+  - httpApi:
+      path: /room/services
+      method: post
