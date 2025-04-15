@@ -5,9 +5,12 @@ exports.hello = async (event) => {
   return {
     statusCode: 200,
     body:
-    // res2
      JSON.stringify({
       message: "working ,write api now!",
     }),
   };
-};
+}
+
+
+
+

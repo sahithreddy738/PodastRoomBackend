@@ -14,5 +14,6 @@ functions:
       - httpApi:
           path: /hello
           method: get
+  
 plugins:
   - serverless-offline
