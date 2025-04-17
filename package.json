@@ -10,6 +10,7 @@
     "uuid": "^11.0.2"
   },
   "devDependencies": {
+    "serverless-aws-documentation": "^1.1.0",
     "serverless-offline": "^14.4.0"
   }
 }

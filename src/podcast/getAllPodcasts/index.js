@@ -9,15 +9,11 @@ exports.handler = async (event) => {
     try {
       const [rooms] = await connection.execute(`
         SELECT 
-          id,
-          name,
-          location,
-          capacity,
-          description,
-          image_key,
-          created_at,
-          created_by
-        FROM podcast_rooms
+         *
+        FROM podcast_rooms Full JOIN podcast_room_amenities ON podcast_rooms.id = podcast_room_amenities.room_id
+        LEFT JOIN amenities ON podcast_room_amenities.amenity_id = amenities.id
+        LEFT JOIN services ON podcast_rooms.id = services.room_id
+        LEFT JOIN podcast_room_time_slots ON podcast_rooms.id = podcast_room_time_slots.room_id
         ORDER BY created_at DESC
       `);
 

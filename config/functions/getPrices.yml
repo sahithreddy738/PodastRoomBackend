@@ -1,0 +1,7 @@
+function:
+  handler: src/podcasts/getPrices/index.handler
+  timeout: 30
+  events:
+  - httpApi:
+      path: /getPrices
+      method: get

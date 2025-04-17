@@ -16,5 +16,8 @@ functions:
   createServices: ${file(config/functions/createServices.yml):function}
   createRoomServices: ${file(config/functions/createRoomServices.yml):function}
   getRoomServices: ${file(config/functions/getRoomServices.yml):function}
+  getPrices: ${file(config/functions/getPrices.yml):function}
+  createPodcastroom: ${file(config/functions/createPodcastRoom.yml):function}
+  podcastfiltering: ${file(config/functions/podcastfiltering.yml):function}
 plugins:
 - serverless-offline
