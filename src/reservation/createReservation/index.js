@@ -22,17 +22,16 @@ exports.handler = async (event) => {
 
     const connection = await pool.getConnection();
     try {
-      // Check if slot is already booked for this date
+
       const [existing] = await connection.execute(
-        `SELECT COUNT(*) AS count FROM reservations 
-         WHERE slot_id = ? AND date = ? AND status != 'cancelled'`,
+        `SELECT status FROM reservations 
+         WHERE slot_id = ? AND date = ? AND status IN ('pending', 'confirmed')`,
         [slotId, date]
       );
-
-      if (existing[0].count > 0) {
-        throw new Error("Slot already reserved for the selected date.");
+      
+      if (existing.length > 0) {
+        throw new Error("Slot already reserved or pending for the selected date.");
       }
-
       const reservationId = uuidv4();
 
       // Insert reservation

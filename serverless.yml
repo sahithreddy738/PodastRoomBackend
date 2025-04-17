@@ -16,5 +16,6 @@ functions:
   createServices: ${file(config/functions/createServices.yml):function}
   createRoomServices: ${file(config/functions/createRoomServices.yml):function}
   getRoomServices: ${file(config/functions/getRoomServices.yml):function}
+  getCapacity: ${file(config/functions/getCapacity.yml):function}
 plugins:
 - serverless-offline
