@@ -1,0 +1,7 @@
+function:
+  handler: src/podcast/getCapacity/index.handler
+  timeout: 30
+  events:
+  - httpApi:
+      path: /capacity
+      method: get

@@ -7,21 +7,56 @@ exports.handler = async (event) => {
     const connection = await pool.getConnection();
 
     try {
-      const [rooms] = await connection.execute(`
+      const [rows] = await connection.execute(`
         SELECT 
-         *
-        FROM podcast_rooms Full JOIN podcast_room_amenities ON podcast_rooms.id = podcast_room_amenities.room_id
-        LEFT JOIN amenities ON podcast_room_amenities.amenity_id = amenities.id
-        LEFT JOIN services ON podcast_rooms.id = services.room_id
-        LEFT JOIN podcast_room_time_slots ON podcast_rooms.id = podcast_room_time_slots.room_id
-        ORDER BY created_at DESC
+          pr.id AS room_id,
+          pr.name AS room_name,
+          pr.location,
+          pr.capacity,
+          pr.description,
+          pr.created_by,
+          pr.created_at,
+          pr.image_key,
+          pr.price,
+          a.id AS amenity_id,
+          a.name AS amenity_name
+        FROM podcast_rooms pr
+        LEFT JOIN podcast_room_amenities pra ON pr.id = pra.room_id
+        LEFT JOIN amenities a ON pra.amenity_id = a.id
+        ORDER BY pr.created_at DESC
       `);
+
+      const podcastRoomsMap = new Map();
+
+      for (const row of rows) {
+        if (!podcastRoomsMap.has(row.room_id)) {
+          podcastRoomsMap.set(row.room_id, {
+            id: row.room_id,
+            name: row.room_name,
+            location: row.location,
+            capacity: row.capacity,
+            description: row.description,
+            created_by: row.created_by,
+            created_at: row.created_at,
+            image_key: row.image_key,
+            price: row.price,
+            amenities: [],
+          });
+        }
+
+        if (row.amenity_id && row.amenity_name) {
+          podcastRoomsMap.get(row.room_id).amenities.push({
+            id: row.amenity_id,
+            name: row.amenity_name,
+          });
+        }
+      }
+
+      const podcastRooms = Array.from(podcastRoomsMap.values());
 
       return {
         statusCode: 200,
-        body: JSON.stringify({
-          podcastRooms: rooms,
-        }),
+        body: JSON.stringify({ podcastRooms }),
       };
     } finally {
       connection.release();
